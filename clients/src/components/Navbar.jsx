@@ -11,7 +11,7 @@ const Navbar = () => {
             <div className="container">
                 <div className="logo"> 
                     <Link to="/"></Link>
-                    <img src="https://github.com/subhamhacks/Full-Stack-Blog-App/blob/main/clients/src/img/bloglogo.png" alt="Blog by Subham" />
+                    <img src="/bloglogo.png" alt="Blog by Subham" />
                 </div>
                 <div className="links"> 
                     <Link className="link" to="/?cat=art"><h6>ART</h6></Link>
