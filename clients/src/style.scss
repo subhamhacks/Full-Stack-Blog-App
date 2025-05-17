@@ -1,0 +1,397 @@
+$myblue : rgb(123, 178, 196);
+$mydeepblue : #0b5983;
+
+
+.app{
+    display: flex;
+    justify-content: center;
+
+    .container{
+        width: 1024px;
+        // overflow: hidden;
+
+        .link{
+            text-decoration: none;
+            color: inherit;
+        }
+
+        //login & register
+        .auth{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: $myblue;
+
+            h1{
+                font-size:30px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: $mydeepblue;
+            }
+
+            form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 300px;
+                height: 350px;
+                background-color: white;
+                border-radius: 5%;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            input{
+                padding: 10px;
+                border: none;
+                border-bottom: 1px solid black;
+            }
+
+            button{
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+                background-color: $mydeepblue;
+                color: white; 
+                border-radius: 5%;
+            }
+
+            p{
+                font-size: 12px;
+                color: red;
+                text-align: center;
+            }
+
+            span{
+                font-size: 12px;
+                text-align: center;
+
+            }
+        }
+        
+        //navbar
+        .navbar{
+            margin-bottom: 70px;
+            .container{
+                display: flex;
+                padding: 10px 0px;
+                justify-content: space-between;
+                align-items: center;
+                .logo{
+                    img{
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 15%;
+                    }
+                }
+                .links{
+                    display: flex;
+                    align-items: center;
+                    // border-bottom: 1px solid black;
+                    gap: 18px;
+                    padding-top: 70px;
+
+                    h6{
+                        font-size: 22px;
+                        font-weight: 300;
+                    }
+
+                    span{
+                        cursor: pointer;
+                    }
+
+                    .write{
+                        background-color: $myblue;
+                        width: 100px;
+                        height: 50px;
+                        border-radius: 10%;
+                        align-items: center;
+                        display: flex;
+                        justify-content: center;
+                        font-weight: 300;
+                        border: 3px solid white;
+
+                        &:hover{
+                            background-color: white;
+                            border: 3px solid $myblue;
+                            // color: lightBlue;
+                            font-weight: bold;
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        //footer
+        footer{
+            margin-top: 120px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: $myblue;
+            font-size: 12px;
+            font-weight: 300;
+            img{
+                width: 75px;
+                height: 75px;
+            }
+        }
+
+        //home
+        .home{
+            .posts{
+                // margin-top: 60px;
+                display: flex;
+                flex-direction: column;
+                gap: 150px;
+
+                .post{
+                    display: flex;
+                    gap: 70px;
+
+                    &:nth-child(2n+1){
+                        flex-direction: row-reverse;
+                    }
+
+                    .imgs{
+                        flex: 2;
+                        position: relative;
+
+                        &::after{
+                            // counter-reset: img;
+                            content: "";
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            background-color: $myblue;
+                            top: 20px;
+                            left: +20px;
+                            z-index: -1;
+                        }
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            max-width: 400px;
+                            max-height: 400px;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .content{
+                        flex: 3;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        h1{
+                            font-size: 36px;
+                        }
+                        p{
+                            font-size: 18px;
+                            font-weight: 300;
+                        }
+                        button{
+                            width: max-content;
+                            padding: 10px 25px;
+                            cursor: pointer;
+                            background-color: white;
+                            border: 3px solid $myblue;
+                            color: $myblue;
+
+                            &:hover{
+                                background-color: white;
+                                border: 3px solid $mydeepblue;
+                                color: $mydeepblue;
+                            }
+                        };
+                    }
+                }
+
+
+            }
+        }
+
+        //post
+        .post{
+            display: flex;
+            gap: 50px;
+
+            .content{
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+
+                img{
+                    width: 100%;
+                    height: 300px;
+                    object-fit: cover;
+
+
+                }
+                .user{
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    font-size: 14px;
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    span{
+                        font-weight: bold;
+                    }
+
+                    .edit{
+                        display: flex;
+                        gap: 5px;
+                        img{
+                            width: 15px;
+                            height: 15px;
+                            cursor: pointer;
+                        }
+                    }    
+                }
+                h1{
+                    font-size: 36px;
+                    margin-top: 20px;
+                }
+                p{
+                    text-align: justify;
+                }
+            }
+
+            .menu{
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+                h1{
+                    font-size: 20px;
+                }
+                .post{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    img{
+                        width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                    }
+                    h2{
+                        color: #000;
+                    }
+                    button{
+                        width: max-content;
+                        padding: 10px 25px;
+                        cursor: pointer;
+                        background-color: white;
+                        border: 3px solid $myblue;
+                        color: $myblue;
+
+                        &:hover{
+                            background-color: white;
+                            border: 3px solid $mydeepblue;
+                            color: $mydeepblue;
+                        }
+                    };
+                }
+
+            }
+        }
+
+        //write
+        .add{
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+
+            .content {
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                input {
+                    padding: 15px;
+                    border: 2px solid lightgray;
+                }
+
+                .editorContainer {
+                    height: 320px;
+                    overflow: scroll;
+                    border: 1px solid lightgray;
+
+                    .editor {
+                        height: 100%;
+                        border: none;
+                    }
+                }
+            }
+
+            .menu {
+                flex: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .item {
+                    border: 1px solid lightgray;
+                    padding: 10px;
+                    flex:1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    font-size: 14px;
+                    color: #555;
+
+                    h1{
+                        font-size: 22px;
+                    }
+
+                    .file{
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+
+                    .buttons{
+                        display: flex;
+                        justify-content: space-between;
+
+                        :first-child{
+                            cursor: pointer;
+                            color: $myblue;
+                            background-color: white;
+                            border: 1px solid $myblue;
+                            padding: 3px 5px;
+                        }
+                        :last-child{
+                            cursor: pointer;
+                            color: white;
+                            background-color: $myblue;
+                            border: 1px solid $myblue;
+                            padding: 3px 5px;
+                        }
+                    }
+
+                    .cat{
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                        color: $myblue;
+                    }
+                }
+            }
+        }
+    }
+}
