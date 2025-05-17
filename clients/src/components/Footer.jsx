@@ -7,8 +7,8 @@ const Footer = () => {
         <footer>
             <img src={logo} alt="Blog by Annetta"/>
             <span>
-                Website created by Annetta with React.js.<br />
-                Contact: annetta@berkeley.edu
+                Website created by Subham with React.js.<br />
+                Contact: mohanty.subham07@gmail.com
             </span>
         </footer>
     );   
