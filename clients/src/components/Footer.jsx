@@ -5,7 +5,7 @@ import logo from "../img/logo.png";
 const Footer = () => {
     return (
         <footer>
-            <img src="/bloglogo.png" alt="Blog by Subham"/>
+            <img src="/img/bloglogo.png" alt="Blog by Subham"/>
             <span>
                 Website created by Subham with React.js.<br />
                 Contact: mohanty.subham07@gmail.com
