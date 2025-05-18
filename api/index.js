@@ -10,22 +10,18 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Setup for __dirname in ES modules
+// Setup for ES Modules __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Config
+// Load .env variables
 dotenv.config();
+
+// Init app
 const app = express();
 const port = process.env.PORT || 8800;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(cookieParser());
-app.use("/upload", express.static(path.join(__dirname, "../client/public/upload")));
-
-// MySQL connection
+// MySQL DB connection
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -35,16 +31,22 @@ const db = mysql.createConnection({
 
 db.connect(err => {
   if (err) {
-    console.error("Database connection failed:", err);
+    console.error("❌ MySQL connection error:", err);
     process.exit(1);
   }
-  console.log("Connected to MySQL database.");
+  console.log("✅ Connected to MySQL database.");
 });
 
-// Multer config
+// Middleware
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use("/upload", express.static(path.join(__dirname, "../client/public/upload")));
+
+// File upload setup
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../client/public/upload"); // or use S3/Cloudinary in production
+    cb(null, path.join(__dirname, "../client/public/upload"));
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -52,7 +54,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// File upload route
 app.post("/api/upload", upload.single("file"), (req, res) => {
   const file = req.file;
   res.status(200).json(file.filename);
@@ -63,12 +64,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
-// Test route (optional)
+// Test route
 app.get("/", (req, res) => {
-  res.send("API is running.");
+  res.send("API running successfully!");
 });
 
 // Start server
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`🚀 Server started on port ${port}`);
 });
