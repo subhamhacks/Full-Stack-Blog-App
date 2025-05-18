@@ -1,50 +1,37 @@
-import express from "express";
-import authRoutes from "./routes/auth.js";
-import userRoutes from "./routes/user.js";
-import postRoutes from "./routes/post.js";
-import cookieParser from "cookie-parser";
-import multer from "multer";
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
 
+const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users");
+const postRoute = require("./routes/posts");
+
+dotenv.config();
 
 const app = express();
 
+// Middlewares
+app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
-// If there is auth problem,
-// Alter user 'root'@'localhost' identified with mysql_native_password = "";
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "../client/public/upload");
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + file.originalname);
-    },
-});
-  
-const upload = multer({storage : storage});
+// Routes
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
 
-app.post("/api/upload", upload.single("file"), function (req, res) {
-    const file = req.file;
-    res.status(200).json(file.filename);
-});
+// MongoDB connection
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error(err));
 
+// ✅ Use Render's assigned port or fallback to 10000 for local
+const PORT = process.env.PORT || 10000;
 
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/posts", postRoutes);
-// app.get("/test", (req, res) => {
-//     res.json('Hello World!')
-// });
-app.get("/api/posts", (req, res) => {
-    const q = "SELECT * FROM posts";
-    db.query(q, (err, data) => {    
-        if(err) return res.json(err);
-        return res.json(data);
-    });
-});
-
-
-app.listen(8800, () => {
-  console.log("Connected!");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
